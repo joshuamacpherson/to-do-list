@@ -58,14 +58,15 @@ export default function App() {
   return (
     <div>
       <ClearAll setTasks={setTasks} saveTasks={saveTasks} />
-      <h1 className="p-12 font-ibm text-5xl font-extrabold flex items-start justify-start text-left text-[#cacaca]">Simple To-Do</h1>
+      <h1 className="p-5 font-ibm text-5xl font-extrabold flex items-start justify-start text-left text-[#cacaca]">Simple To-Do</h1>
+
       <TaskInput addTask={addTask} />
       <div className="flex items-center justify-center m-10">
-        <div id="container" className="rounded-4xl bg-[#282c34] min-h-150 w-200 p-5">
+        <div id="container" className="rounded-4xl bg-[#282c34] min-h-180 w-200 p-5">
           {tasks.map((task, index) => (
             <div key={index} className="flex items-start">
               <h1 className="font-ibm text-3xl text-[#008cff] pb-5 pt-3 w-12 text-right">
-                {index + 1}.
+                {task.enabled ? index + 1 : " ✔"}.
               </h1>
               <h1
                 onClick={() => toggleTask(index)}

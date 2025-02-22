@@ -7,6 +7,13 @@ type TaskInputProps = {
 function TaskInput({ addTask }: TaskInputProps) {
   const [inputValue, setInputValue] = useState('');
 
+  const enter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      addTask(inputValue);
+      setInputValue('');
+    }
+  };
+
   return (
     <div className="flex items-center justify-center m-10">
       <div className="relative w-150">
@@ -17,10 +24,12 @@ function TaskInput({ addTask }: TaskInputProps) {
           placeholder="Enter task here..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={enter}
         />
         <button
           onClick={() => {
             addTask(inputValue);
+            setInputValue('');
           }}
           className="absolute right-0 top-0 h-11 w-16 rounded-3xl font-ibm font-medium text-white bg-[#c36c6d] outline-[bg-[#c36c6d]
           hover:bg-[#955354] transform transition-transform duration-100 ease-in-out hover:scale-105 hover:cursor-pointer active:scale-100"
